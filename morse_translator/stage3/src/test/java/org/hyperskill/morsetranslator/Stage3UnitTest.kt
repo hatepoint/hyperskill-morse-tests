@@ -1,9 +1,7 @@
 package org.hyperskill.morsetranslator
 
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.TextView
 import org.hyperskill.morsetranslator.internals.AbstractUnitTest
 import org.junit.Assert.assertEquals
@@ -12,7 +10,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class Stage1UnitTest : AbstractUnitTest<MainActivity>(MainActivity::class.java){
+class Stage3UnitTest : AbstractUnitTest<MainActivity>(MainActivity::class.java){
 
     private val tvText: TextView by lazy {
         val view = activity.findViewByString<TextView>("tv_text")
@@ -119,6 +117,13 @@ class Stage1UnitTest : AbstractUnitTest<MainActivity>(MainActivity::class.java){
     fun checkBtGuideInitialState() {
         testActivity {
             btGuide
+        }
+    }
+
+    @Test
+    fun `Check new activity starts after Guide button click`() {
+        testActivity {
+
         }
     }
 }

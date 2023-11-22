@@ -1,9 +1,7 @@
 package org.hyperskill.morsetranslator
 
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.TextView
 import org.hyperskill.morsetranslator.internals.AbstractUnitTest
 import org.junit.Assert.assertEquals
@@ -12,7 +10,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class Stage1UnitTest : AbstractUnitTest<MainActivity>(MainActivity::class.java){
+class Stage2UnitTest : AbstractUnitTest<MainActivity>(MainActivity::class.java){
 
     private val tvText: TextView by lazy {
         val view = activity.findViewByString<TextView>("tv_text")
@@ -119,6 +117,53 @@ class Stage1UnitTest : AbstractUnitTest<MainActivity>(MainActivity::class.java){
     fun checkBtGuideInitialState() {
         testActivity {
             btGuide
+        }
+    }
+
+    @Test
+    fun `Check text translating to morse`() {
+        testActivity {
+            val messageInitialText = "The etText doesn't seem to represent the contents of etMorse correctly"
+            etText.setText("HELLO")
+            assertEquals(messageInitialText, ".... . .-.. .-.. ---", etMorse.text.toString())
+        }
+    }
+
+    @Test
+    fun `Check text translating to morse 2`() {
+        testActivity {
+            val messageInitialText = "The etText doesn't seem to represent the contents of etMorse correctly"
+            etText.setText("ANDROID TEST")
+            assertEquals(messageInitialText, ".- -. -.. .-. --- .. -..    - . ... -", etMorse.text.toString())
+        }
+    }
+
+    @Test
+    fun `Check morse translating to text`() {
+        testActivity {
+            val messageInitialText = "The etMorse doesn't seem to represent the contents of etText correctly"
+            etMorse.setText("... --- ...")
+            assertEquals(messageInitialText, "SOS", etText.text.toString())
+        }
+    }
+
+    @Test
+    fun `Check morse translating to text 2`() {
+        testActivity {
+            val messageInitialText = "The etMorse doesn't seem to represent the contents of etText correctly"
+            etMorse.setText(".- -. -.. .-. --- .. -..    - . ... -")
+            assertEquals(messageInitialText, "ANDROID TEST", etText.text.toString())
+        }
+    }
+
+    @Test
+    fun `Check clear button`() {
+        testActivity {
+            val messageInitialText = "The Clear button doesn't seem to clear the contents of on of the EditTexts"
+            etText.setText("Test")
+            btClear.clickAndRun()
+            assertEquals(messageInitialText, "", etText.text.toString())
+            assertEquals(messageInitialText, "", etMorse.text.toString())
         }
     }
 }
