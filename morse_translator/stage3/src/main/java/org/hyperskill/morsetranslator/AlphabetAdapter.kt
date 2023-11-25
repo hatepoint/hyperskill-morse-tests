@@ -12,8 +12,8 @@ class AlphabetAdapter : ListAdapter<Map.Entry<String, String>, AlphabetAdapter.V
 
     inner class ViewHolder(private val binding: ItemAlphabetBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Map.Entry<String, String>) {
-            binding.textLetter.text = item.key
-            binding.textMorse.text = item.value
+            binding.tvLetter.text = item.key
+            binding.tvMorse.text = item.value
         }
 
     }

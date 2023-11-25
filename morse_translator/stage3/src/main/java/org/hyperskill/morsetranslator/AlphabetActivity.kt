@@ -30,8 +30,8 @@ class AlphabetActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val alphabetAdapter = AlphabetAdapter()
-        binding.recyclerView.adapter = alphabetAdapter
-        binding.recyclerView.layoutManager = GridLayoutManager(this, 3)
+        binding.rvAlphabet.adapter = alphabetAdapter
+        binding.rvAlphabet.layoutManager = GridLayoutManager(this, 3)
         alphabetAdapter.submitList(Translator().getAlphabet())
         binding.tvDescription.text = spanDescriptionText
     }
