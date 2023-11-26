@@ -4,10 +4,9 @@ import android.graphics.Typeface
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.StyleSpan
-import android.widget.TextView
 import androidx.core.text.inSpans
 import androidx.core.text.toSpanned
-import androidx.recyclerview.widget.RecyclerView
+import org.hyperskill.morsetranslator.internals.MorseAlphabetActivityUnitTest.Companion.ID_RV_ALPHABET
 import org.hyperskill.morsetranslator.internals.MorseMainActivityUnitTest
 import org.hyperskill.morsetranslator.internals.shadows.CustomShadowAsyncDifferConfig
 import org.junit.Assert.assertEquals
@@ -45,22 +44,22 @@ class Stage3UnitTest : MorseMainActivityUnitTest<MainActivity>(MainActivity::cla
         )
         alphabetActivityUnitTest.apply {
             testActivity(alphabetActivityIntent) {
-                val recyclerView = activity.findViewByString<RecyclerView>("rv_alphabet")
-                recyclerView.measure(0, 0)
-                recyclerView.layout(0, 0, 100, 1000)
-                val adapter = recyclerView.adapter as AlphabetAdapter
-                val firstLetter = recyclerView.findViewHolderForAdapterPosition(0)?.itemView?.findViewByString<TextView>("tv_letter")
-                val firstMorse = recyclerView.findViewHolderForAdapterPosition(0)?.itemView?.findViewByString<TextView>("tv_morse")
-                //val alphabet = adapter.currentList
-                //val expectedAlphabet = emptyList<Map.Entry<String, String>>() //Translator().getAlphabet()
-                val letterMessage = "The letter in the first View does not seem to match the expected one"
-                val morseMessage = "The morse in the first View does not seem to match the expected one"
-                val expectedLetter = "a"
-                val expectedMorse = ".-"
-                val actualLetter = firstLetter?.text.toString().lowercase()
-                val actualMorse = firstMorse?.text.toString().lowercase()
-                assertEquals(letterMessage, expectedLetter, actualLetter)
-                assertEquals(morseMessage, expectedMorse, actualMorse)
+                recyclerView.doActionOnEachListItem(morseCodeMap.entries.toList())
+                { itemViewSupplier, index, (letter: Char, expectedMorse: String) ->
+                    ItemViewBinding(itemViewSupplier()).apply {
+                        val letterMessage = "The letter in $ID_RV_ALPHABET position $index " +
+                                "does not match the expected one"
+                        val morseMessage = "The morse in in $ID_RV_ALPHABET position $index " +
+                                "does not match the expected one"
+
+                        val expectedLetter = "$letter"
+                        val actualLetter = tvLetter.text.toString().uppercase()
+                        assertEquals(letterMessage, expectedLetter, actualLetter)
+
+                        val actualMorse = tvMorse.text.toString()
+                        assertEquals(morseMessage, expectedMorse, actualMorse)
+                    }
+                }
             }
         }
     }
