@@ -71,7 +71,7 @@ class Stage3UnitTest : MorseMainActivityUnitTest<MainActivity>(MainActivity::cla
         )
         alphabetActivityUnitTest.apply {
             testActivity(alphabetActivityIntent) {
-                val tvDesc = activity.findViewByString<TextView>("tv_description")
+
                 val expectedDescription =
                     "Letters are separated with one space, words are separated with 3 spaces. " +
                             "Unknown symbols will be displayed as '?'"
@@ -105,20 +105,28 @@ class Stage3UnitTest : MorseMainActivityUnitTest<MainActivity>(MainActivity::cla
                 for (i in expectedSpans.indices) {
                     val expectedSpan = expectedSpans[i]
                     val actualSpan = actualSpans[i]
-                    assertEquals(
-                        "The span type does not match the expected one",
-                        expectedSpan.style,
-                        actualSpan.style
-                    )
+
+                    val expectedSpanStart = expectedSpannableString.getSpanStart(expectedSpan)
+                    val actualSpanStart = actualSpannableString.getSpanStart(actualSpan)
                     assertEquals(
                         "The span start does not match the expected one",
-                        expectedSpannableString.getSpanStart(expectedSpan),
-                        actualSpannableString.getSpanStart(actualSpan)
+                        expectedSpanStart,
+                        actualSpanStart
                     )
+
+                    val expectedSpanEnd = expectedSpannableString.getSpanEnd(expectedSpan)
+                    val actualSpanEnd = actualSpannableString.getSpanEnd(actualSpan)
                     assertEquals(
                         "The span end does not match the expected one",
-                        expectedSpannableString.getSpanEnd(expectedSpan),
-                        actualSpannableString.getSpanEnd(actualSpan)
+                        expectedSpanEnd,
+                        actualSpanEnd
+                    )
+
+                    assertEquals(
+                        "The span type for start: $expectedSpanStart, end $expectedSpanEnd" +
+                                " does not match the expected BOLD_ITALIC",
+                        expectedSpan.style,
+                        actualSpan.style
                     )
                 }
             }
