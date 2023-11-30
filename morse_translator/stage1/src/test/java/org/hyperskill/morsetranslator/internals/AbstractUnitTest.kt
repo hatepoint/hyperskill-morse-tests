@@ -19,6 +19,7 @@ import org.robolectric.shadows.ShadowLooper
 import org.robolectric.shadows.ShadowToast
 import java.time.Duration
 
+@Suppress("RedundantUnitReturnType")
 abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
 
     /**
@@ -94,16 +95,22 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
      */
     inline fun <reified T> Activity.findViewByString(idString: String): T {
         val id = this.resources.getIdentifier(idString, "id", this.packageName)
-        val view: View? = this.findViewById(id)
+        val maybeView: View? = this.findViewById(id)
 
-        val idNotFoundMessage = "View with id \"$idString\" was not found"
-        val wrongClassMessage = "View with id \"$idString\" is not from expected class. " +
-                "Expected ${T::class.java.simpleName} found ${view?.javaClass?.simpleName}"
+        val (expectedClass, maybeActualClass) =
+            if(T::class.java.simpleName == maybeView?.javaClass?.simpleName) {
+                T::class.java.canonicalName to maybeView.javaClass.canonicalName
+            } else {
+                T::class.java.simpleName to maybeView?.javaClass?.simpleName
+            }
+        val idNotFoundMessage = "View with id \"$id\" was not found"
+        val wrongClassMessage = "View with id \"$id\" is not from expected class. " +
+                "Expected $expectedClass found $maybeActualClass"
 
-        assertNotNull(idNotFoundMessage, view)
-        assertTrue(wrongClassMessage, view is T)
+        assertNotNull(idNotFoundMessage, maybeView)
+        assertTrue(wrongClassMessage, maybeView is T)
 
-        return view as T
+        return maybeView as T
     }
 
     /**
@@ -113,16 +120,22 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
      */
     inline fun <reified T> View.findViewByString(idString: String): T {
         val id = this.resources.getIdentifier(idString, "id", context.packageName)
-        val view: View? = this.findViewById(id)
+        val maybeView: View? = this.findViewById(id)
 
-        val idNotFoundMessage = "View with id \"$idString\" was not found"
-        val wrongClassMessage = "View with id \"$idString\" is not from expected class. " +
-                "Expected ${T::class.java.simpleName} found ${view?.javaClass?.simpleName}"
+        val (expectedClass, maybeActualClass) =
+            if(T::class.java.simpleName == maybeView?.javaClass?.simpleName) {
+                T::class.java.canonicalName to maybeView.javaClass.canonicalName
+            } else {
+                T::class.java.simpleName to maybeView?.javaClass?.simpleName
+            }
+        val idNotFoundMessage = "View with id \"$id\" was not found"
+        val wrongClassMessage = "View with id \"$id\" is not from expected class. " +
+                "Expected $expectedClass found $maybeActualClass"
 
-        assertNotNull(idNotFoundMessage, view)
-        assertTrue(wrongClassMessage, view is T)
+        assertNotNull(idNotFoundMessage, maybeView)
+        assertTrue(wrongClassMessage, maybeView is T)
 
-        return view as T
+        return maybeView as T
     }
 
     /**
@@ -132,7 +145,7 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
      *
      * Internally it calls performClick() and shadowLooper.idleFor(millis)
      */
-    fun View.clickAndRun(millis: Long = 500){
+    fun View.clickAndRun(millis: Long = 500) {
         this.performClick()
         shadowLooper.idleFor(Duration.ofMillis(millis))
     }
@@ -238,8 +251,8 @@ abstract class AbstractUnitTest<T : Activity>(clazz: Class<T>) {
     fun RecyclerView.doActionOnSingleListItem(
         itemIndex: Int,
         caseDescription: String = "",
-        action: (itemViewSupplier: () -> View) -> Unit)
-    {
+        action: (itemViewSupplier: () -> View) -> Unit
+    ) : Unit {
 
         assertNotNull("$caseDescription Your recycler view adapter should not be null", this.adapter)
 
