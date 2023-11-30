@@ -1,52 +1,24 @@
-<html>
+<h2><strong>Stage 1: Designing App UI</strong></h2>
 
-<h2>Task Description: Tips & Tricks</h2>
+<h2>Description</h2>
 
-<p>This is a task description file.
-    Its content will be displayed to a learner
-    in the <strong>Task Description</strong> window.</p>
+<p>In this initial phase, the goal is to establish a visually intuitive and functional interface for users to interact with the Morse code translation application. The design process involves crafting a layout that neatly organizes input and output fields and buttons to work with the application.</p>
 
-<p>It supports both Markdown and HTML.
-    To toggle the format, you can rename <strong>task.md</strong>
-    to <strong>task.html</strong>, or vice versa.
-    The default task description format can be changed
-    in <strong>Preferences | Tools | Education</strong>,
-    but this will not affect any existing task description files.</p>
+<h2>Objectives</h2>
 
-<p>The following features are available in
-    <strong>task.md/task.html</strong>
-    which are specific to the EduTools plugin:</p>
+<p>Create a layout that includes:</p>
 
-<ul>
-    <li>Hints can be added anywhere in the task text.
-        Type "hint" and press Tab.
-        Hints should be added to an empty line in the task text.
-        In hints you can use both HTML and Markdown.
-        <div class="hint">Text of your hint</div></li>
+<ol>
+    <li>An EditText&nbsp;with an id of <code>et_text</code>&nbsp;for users to enter text that will be translated to morse.</li>
+    <li>An EditText with an id of <code>et_morse</code> to display the translated text or entering a Morse code.</li>
+    <li>A button with an id of <code>bt_clear</code> to clear both EditTexts.</li>
+    <li>A button with an id of <code>bt_guide</code> that will be used to open an activity with&nbsp;alphabet and an instruction for the app.</li>
+    <li>A TextView&nbsp;with an id of <code>tv_text</code> with a &quot;Text&quot; set as a text and placed near the <code>et_text</code>&nbsp;EditText</li>
+    <li>A TextView with an id of <code>tv_morse</code>&nbsp;with a &quot;Morse&quot; set as a text and placed near the <code>et_morse</code>&nbsp;EditText</li>
+</ol>
 
-    <li>You may need to refer your learners to a particular lesson,
-        task, or file. To achieve this, you can use the in-course links.
-        Specify the path using the <code>&lt;a href="course://lesson1/task1/file1"&gt;
-            link_text&lt;/a&gt;</code> format.</li><br>
+<p>No actions are required for this stage, just define the Layout with correct ID&#39;s and Views.</p>
 
-    <li>You can insert shortcuts in the task description.
-        While <strong>task.html/task.md</strong> is open,
-        right-click anywhere on the <strong>Editor</strong> tab
-        and choose the <strong>Insert shortcut</strong> option
-        from the context menu.
-        For example: &amp;shortcut:FileStructurePopup;.</li><br>
+<h2>Example</h2>
 
-    <li>Insert the &percnt;<code>IDE_NAME</code>&percnt; macro,
-        which will be replaced by the actual IDE name.
-        For example, <strong>%IDE_NAME%</strong>.</li><br>
-
-    <li>Insert PSI elements, by using links like
-        <code>&lt;a href="psi_element://link.to.element"&gt;element description&lt;/a&gt;</code>.
-        To get such a link, right-click the class or method
-        and select <strong>Copy Reference</strong>.
-        Then press &amp;shortcut:EditorPaste;
-        to insert the link where appropriate.
-        For example, a
-        <a href="psi_element://java.lang.String#contains">link to the "contains" method</a>.</li>
-</ul>
-</html>
+<p><img alt="example layout" height="627" name="image.png" src="https://ucarecdn.com/1e99e962-3369-4e1e-bfad-cbbf42accb89/" width="365" /></p>

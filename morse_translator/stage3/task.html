@@ -1,52 +1,21 @@
-<html>
+<h2>Description</h2>
 
-<h2>Task Description: Tips & Tricks</h2>
+<p>In the final stage, you will augment the application by adding a feature that provides users with a Morse code dictionary. This enhancement serves both as a learning tool and a quick reference, increasing the app's educational value. The Morse code dictionary should be seamlessly integrated into the existing user interface.</p>
 
-<p>This is a task description file.
-    Its content will be displayed to a learner
-    in the <strong>Task Description</strong> window.</p>
+<h2>Objectives</h2>
 
-<p>It supports both Markdown and HTML.
-    To toggle the format, you can rename <strong>task.md</strong>
-    to <strong>task.html</strong>, or vice versa.
-    The default task description format can be changed
-    in <strong>Preferences | Tools | Education</strong>,
-    but this will not affect any existing task description files.</p>
+<ol>
+    <li>Create an AlphabetActivity that contains a RecyclerView with id <code>rv_alphabet</code> and a TextView <code>tv_description</code></li>
+    <li>RecyclerView item should contain <code>tv_letter</code> TextView, <code>divider</code> TextView with a "|" as a text, <code>tv_morse</code> TextView.</li>
+    <li>RecyclerView should contain each letter of English alphabet with a corresponding morse code.</li>
+    <li>Instantiate a SpannableStringBuilder to set the <code>tv_description</code> TextView's
+        <ul>
+            <li>use this text for description: <code>"Letters are separated with one space, words are separated with 3 spaces . Unknown symbols will be displayed as '?'"</code></li>
+            <li>use spans to style with bold and italic formatting these pieces of the text <code>'one space'</code> and <code>'3 spaces'</code></li>
+        </ul>
+    </li>
+</ol>
 
-<p>The following features are available in
-    <strong>task.md/task.html</strong>
-    which are specific to the EduTools plugin:</p>
+<h2>Example</h2>
 
-<ul>
-    <li>Hints can be added anywhere in the task text.
-        Type "hint" and press Tab.
-        Hints should be added to an empty line in the task text.
-        In hints you can use both HTML and Markdown.
-        <div class="hint">Text of your hint</div></li>
-
-    <li>You may need to refer your learners to a particular lesson,
-        task, or file. To achieve this, you can use the in-course links.
-        Specify the path using the <code>&lt;a href="course://lesson1/task1/file1"&gt;
-            link_text&lt;/a&gt;</code> format.</li><br>
-
-    <li>You can insert shortcuts in the task description.
-        While <strong>task.html/task.md</strong> is open,
-        right-click anywhere on the <strong>Editor</strong> tab
-        and choose the <strong>Insert shortcut</strong> option
-        from the context menu.
-        For example: &amp;shortcut:FileStructurePopup;.</li><br>
-
-    <li>Insert the &percnt;<code>IDE_NAME</code>&percnt; macro,
-        which will be replaced by the actual IDE name.
-        For example, <strong>%IDE_NAME%</strong>.</li><br>
-
-    <li>Insert PSI elements, by using links like
-        <code>&lt;a href="psi_element://link.to.element"&gt;element description&lt;/a&gt;</code>.
-        To get such a link, right-click the class or method
-        and select <strong>Copy Reference</strong>.
-        Then press &amp;shortcut:EditorPaste;
-        to insert the link where appropriate.
-        For example, a
-        <a href="psi_element://java.lang.String#contains">link to the "contains" method</a>.</li>
-</ul>
-</html>
+<p><img alt="example guide screen" height="853" name="image.png" src="https://ucarecdn.com/de6a4fac-4337-44fd-9ae5-78411d1593cf/" width="384"></p>

@@ -21,7 +21,7 @@ class AlphabetActivity : AppCompatActivity() {
                 append("3 spaces")
             }.append(". Unknown symbols will be displayed as '?'")
             .toSpannable()
-    }
+    }// Letters are separated with one space, words are separated with 3 spaces . Unknown symbols will be displayed as '?'
 
     private lateinit var binding: ActivityAlphabetBinding
     override fun onCreate(savedInstanceState: Bundle?) {

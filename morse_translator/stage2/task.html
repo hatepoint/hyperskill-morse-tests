@@ -1,52 +1,64 @@
-<html>
+<h2><strong>Stage 2: Implementing Logic</strong></h2>
 
-<h2>Task Description: Tips & Tricks</h2>
+<h2>Description</h2>
 
-<p>This is a task description file.
-    Its content will be displayed to a learner
-    in the <strong>Task Description</strong> window.</p>
+<p>At this stage, the focus shifts to the core functionality of the app: the translation between text and Morse code. You will need to develop the code that maps characters to Morse code and vice versa. This involves coding the logic that responds to user inputs and translates them accurately.</p>
 
-<p>It supports both Markdown and HTML.
-    To toggle the format, you can rename <strong>task.md</strong>
-    to <strong>task.html</strong>, or vice versa.
-    The default task description format can be changed
-    in <strong>Preferences | Tools | Education</strong>,
-    but this will not affect any existing task description files.</p>
+<h2>Objectives</h2>
 
-<p>The following features are available in
-    <strong>task.md/task.html</strong>
-    which are specific to the EduTools plugin:</p>
+<ol>
+    <li>Set up a map or equivalent data structure for mapping text characters to Morse code and Morse code to text.</li>
+    <li>Implement the translation logic that uses the dictionary to convert input from the user into the desired output format.</li>
+    <li>In morse, letters should be separated with space, and words with 3 spaces.</li>
+    <li>If unknown symbol is entered, replace it with "?".</li>
+    <li>Ensure the <code>et_text</code> changes triggers the conversion from text to Morse code and outputs the result to <code>et_morse</code>.</li>
+    <li>Ensure the <code>et_morse</code> changes triggers the conversion from Morse code to text and outputs the result to <code>et_text</code>.</li>
+    <li>Set action to clear both EditTexts after the <code>bt_clear</code> button is clicked.</li>
+    <li>
+        Use this translation table
+        <pre><code>
+                'A' | ".-",
+                'B' | "-...",
+                'C' | "-.-.",
+                'D' | "-..",
+                'E' | ".",
+                'F' | "..-.",
+                'G' | "--.",
+                'H' | "....",
+                'I' | "..",
+                'J' | ".---",
+                'K' | "-.-",
+                'L' | ".-..",
+                'M' | "--",
+                'N' | "-.",
+                'O' | "---",
+                'P' | ".--.",
+                'Q' | "--.-",
+                'R' | ".-.",
+                'S' | "...",
+                'T' | "-",
+                'U' | "..-",
+                'V' | "...-",
+                'W' | ".--",
+                'X' | "-..-",
+                'Y' | "-.--",
+                'Z' | "--..",
+                '0' | "-----",
+                '1' | ".----",
+                '2' | "..---",
+                '3' | "...--",
+                '4' | "....-",
+                '5' | ".....",
+                '6' | "-....",
+                '7' | "--...",
+                '8' | "---..",
+                '9' | "----."
 
-<ul>
-    <li>Hints can be added anywhere in the task text.
-        Type "hint" and press Tab.
-        Hints should be added to an empty line in the task text.
-        In hints you can use both HTML and Markdown.
-        <div class="hint">Text of your hint</div></li>
+        </code></pre>
+    </li>
+    <li>Give support for both uppercase and lowercase texts using the same table</li>
+</ol>
 
-    <li>You may need to refer your learners to a particular lesson,
-        task, or file. To achieve this, you can use the in-course links.
-        Specify the path using the <code>&lt;a href="course://lesson1/task1/file1"&gt;
-            link_text&lt;/a&gt;</code> format.</li><br>
+<h2>Example</h2>
 
-    <li>You can insert shortcuts in the task description.
-        While <strong>task.html/task.md</strong> is open,
-        right-click anywhere on the <strong>Editor</strong> tab
-        and choose the <strong>Insert shortcut</strong> option
-        from the context menu.
-        For example: &amp;shortcut:FileStructurePopup;.</li><br>
-
-    <li>Insert the &percnt;<code>IDE_NAME</code>&percnt; macro,
-        which will be replaced by the actual IDE name.
-        For example, <strong>%IDE_NAME%</strong>.</li><br>
-
-    <li>Insert PSI elements, by using links like
-        <code>&lt;a href="psi_element://link.to.element"&gt;element description&lt;/a&gt;</code>.
-        To get such a link, right-click the class or method
-        and select <strong>Copy Reference</strong>.
-        Then press &amp;shortcut:EditorPaste;
-        to insert the link where appropriate.
-        For example, a
-        <a href="psi_element://java.lang.String#contains">link to the "contains" method</a>.</li>
-</ul>
-</html>
+<p><img alt="example translation" height="804" name="IMG_3159.gif" src="https://ucarecdn.com/93f328c2-7e75-4e77-99c0-36874c8780b6/" width="362"></p>
