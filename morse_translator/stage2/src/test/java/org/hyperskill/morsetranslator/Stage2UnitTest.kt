@@ -68,4 +68,34 @@ class Stage2UnitTest : MorseMainActivityUnitTest<MainActivity>(MainActivity::cla
             assertEquals(messageEtMorse, "", etMorse.text.toString())
         }
     }
+
+    @Test
+    fun `test05_Check text translating to morse lowercase`() {
+        testActivity {
+            assertTranslateTextToMorse(
+                text = "a lowercase text",
+                expectedMorse = ".-    .-.. --- .-- . .-. -.-. .- ... .    - . -..- -"
+            )
+        }
+    }
+
+    @Test
+    fun `test06_Check text translating to morse mixed with unknowns`() {
+        testActivity {
+            assertTranslateTextToMorse(
+                text = "This TEXT, has some unknown chars like $ # and !",
+                expectedMorse = "- .... .. ...    - . -..- - ?    .... .- ...    ... --- -- .    ..- -. -.- -. --- .-- -.    -.-. .... .- .-. ...    .-.. .. -.- .    ?    ?    .- -. -..    ?"
+            )
+        }
+    }
+
+    @Test
+    fun `test07_Check text translating to text with incorrect chars`() {
+        testActivity {
+            assertTranslateMorseToText(
+                morse = "This is not   a morse   text, but it is separated   like morse text",
+                expectedText = "??? ?? ????? ???"
+            )
+        }
+    }
 }
